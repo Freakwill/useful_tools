@@ -6,7 +6,7 @@ My useful tools
 
 ### semester
 
-```
+```python
 Semester().chinese()  # get the current semester
 
 Semester().toTuple()  # tuple of numbers
