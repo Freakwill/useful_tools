@@ -5,29 +5,37 @@
 from datetime import date
 
 today = date.today()
-datelist = [today.year, today.month, today.day]
+_datelist = [today.year, today.month, today.day]
 
 
-def semester():
-    tlist = datelist
-    if 3 < tlist[1] < 9:
+def semester(datalist=_datelist):
+    if 3 < datelist[1] < 9:
         s = 2
     else:
         s = 1
-    if tlist[1] < 9:
-        y = tlist[0]
+    if datelist[1] < 9:
+        y = datelist[0]
     else:
-        y = tlist[0] + 1
+        y = datelist[0] + 1
     return s, y
 
 class Semester(object):
     ''' Semester class
-    propteries
+
+    Semester for schools
+
+    Propteries
     year: year
     spring_fall: spring (2) or fall (1) semester
     '''
     def __init__(self, year=None, spring_fall=None):
+        '''
+        Keyword Arguments:
+            year {int} -- the year (default: {None})
+            spring_fall {0,1} -- spring or fall semester (default: {None})
+        '''
         if year and spring_fall:
+            # provide both year and sprint_fall
             self.year = year
             self.spring_fall = spring_fall
         else:
