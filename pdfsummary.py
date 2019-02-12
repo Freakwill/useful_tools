@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+"""Summarize pdf
+
+Extract summary of text in pdf.
+"""
+
 import logging
 logging.propagate = False 
 logging.getLogger().setLevel(logging.ERROR)
@@ -10,7 +16,6 @@ from pdfminer.converter import PDFPageAggregator
 from pdfminer.layout import LTTextBoxHorizontal,LAParams
 from pdfminer.pdfinterp import PDFTextExtractionNotAllowed
 
-from sumy.parsers.html import HtmlParser
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer as Summarizer
@@ -56,7 +61,8 @@ def summarize(path, n=10):
 
     return summarizer(parser.document, n)
 
-def show_summary(*args, **kwargs):
-    for k, sentence in enumerate(summarize(*args, **kwargs)):
+def show_summary(path, n=10):
+    print('Summary of %s' % path)
+    for k, sentence in enumerate(summarize(path, n), 1):
         print(k, sentence)
 
